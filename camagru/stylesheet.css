@@ -1,0 +1,47 @@
+
+body {
+    background-color: lightgrey;
+}
+ul {
+    border-radius: 20px;
+    list-style: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: darkgrey;
+}
+li {
+    float: left;
+    border-right:1px solid #bbb;
+}
+
+li:last-child {
+    border-right: none;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 20px 34px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: grey;
+}
+
+.active {
+    background-color: grey;
+}
+
+.login {
+    margin-left: 43%;
+}
+
+.search {
+    background-color: #b1b1b1;
+    border-radius: 28px;
+    margin: 30px 180px;
+}
