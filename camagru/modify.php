@@ -10,7 +10,7 @@ include ("navbar.php")
 	if ($_GET['error'])
 		echo $_GET['error'];
   // todo
-  echo print_r($_SESSION);
+  // echo print_r($_SESSION);
 	?>
 	<h3>Modifier mes info</h3>
 	Ancien Identifiant: <br/><input type="text" name="oldlogin" value='<?php echo $_SESSION['logged'] ?>'><br>
