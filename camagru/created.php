@@ -1,5 +1,5 @@
 <?php
-  include ("navbar.php")
+  include ("partials/navbar.php")
 ?>
 <br>
 <form method="POST" action="create.php" class="login">

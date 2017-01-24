@@ -7,7 +7,7 @@ ob_start();
 <html>
 <head>
 	<title> Coco Selfie</title>
-	<link rel="stylesheet" type="text/css" href="stylesheet.css">
+	<link rel="stylesheet" type="text/css" href="./stylescript/stylesheet.css">
 </head>
 <body>
 <!-- Navbar -->

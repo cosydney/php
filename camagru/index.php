@@ -1,5 +1,5 @@
 <?php
-include ("navbar.php");
+include ("partials/navbar.php");
 // include ("install.php");
 // include ("tri.php");
 // $tri = (isset($GET['tri'])? $GET['tri']: (isset($_GET['tri'])? $_GET['tri']:"genre" ))  ;
@@ -10,14 +10,9 @@ include ("navbar.php");
 <?php
 // if ($_SESSION['logged'] == 'admin' || $_SESSION['logged'] == 'poney')
  ?>
-<script src="capture.js">  </script>
+<script src="stylescript/capture.js">  </script>
+<br>
 <div class="contentarea">
-  <h1>
-    MDN - WebRTC: Still photo capture demo
-  </h1>
-  <p>
-    This example demonstrates how to set up a media stream using your built-in webcam, fetch an image from that stream, and create a PNG using that image.
-  </p>
   <div class="camera">
     <video id="video">Video stream not available.</video>
     <button id="startbutton">Take photo</button>
@@ -32,4 +27,4 @@ include ("navbar.php");
   </p>
 </div>
 
-<?php include ("footer.php"); ?>
+<?php include ("partials/footer.php"); ?>

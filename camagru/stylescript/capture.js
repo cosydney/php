@@ -106,17 +106,32 @@
       context.drawImage(video, 0, 0, width, height);
 
       var data = canvas.toDataURL('image/png');
-      console.log(data);
-      photos.push(data);
       photo.setAttribute('src', data);
+      saveImage(data);
+
     } else {
       clearphoto();
     }
   }
-  function displayphotos(){
-    console.log(photos);
-  }
-  // Set up our event listener to run the startup process
+
+function saveImage(canvasData) {
+    // var canvasData = canvas.toDataURL("image/png");
+    var xmlHttpReq = false;
+    if (window.XMLHttpRequest) {
+        ajax = new XMLHttpRequest();
+    }
+    else if (window.ActiveXObject) {
+        ajax = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+        ajax.open('POST', 'testSave.php', false);
+        ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        ajax.onreadystatechange = function() {
+        console.log(ajax.responseText);
+    }
+   ajax.send("imgData="+canvasData);
+}
+
+    // Set up our event listener to run the startup process
   // once loading is complete.
   window.addEventListener('load', startup, false);
 })();

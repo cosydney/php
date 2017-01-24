@@ -1,6 +1,6 @@
 <?php
 session_start();
-include ("navbar.php")
+include ("partials/navbar.php")
 ?>
 
 <br>
