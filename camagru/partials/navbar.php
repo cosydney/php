@@ -8,13 +8,14 @@ ob_start();
 <head>
 	<title> Coco Selfie</title>
 	<link rel="stylesheet" type="text/css" href="./stylescript/stylesheet.css">
+
 </head>
 <body>
 <!-- Navbar -->
+
 <div class="navbar">
 	<ul>
 		<li> <a href="index.php"> <strong> Coco Selfie </strong> </a></li>
-
 		<?php
 		if ($_SESSION['logged'] == 'admin' || $_SESSION['logged'] == 'poney')
 			echo "<li> <a href='Admin.php'> Admin </a></li>";
@@ -31,6 +32,9 @@ ob_start();
 			echo "<li style='float:right' > <a href='created.php?status=connect'> Connexion </a></li>";
 		};
 		 ?>
+       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
 	</ul>
 </div>
 
