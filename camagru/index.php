@@ -1,38 +1,61 @@
 <?php
 include ("partials/navbar.php");
+// include ("php.ini");
 // include ("install.php");
-// include ("tri.php");
-// $tri = (isset($GET['tri'])? $GET['tri']: (isset($_GET['tri'])? $_GET['tri']:"genre" ))  ;
 // $init = init_database();
 // $tableau = tri($tri, $init);
+// if ($_SESSION['logged'] == 'admin' || $_SESSION['logged'] == 'poney')
 ?>
 
-<?php
-// if ($_SESSION['logged'] == 'admin' || $_SESSION['logged'] == 'poney')
- ?>
 <br>
-<video id="video"></video>
-<button id="startbutton">Prendre une photo</button>
-<canvas id="canvas" hidden></canvas>
-<canvas id="photo" hidden></canvas>
-<canvas id="res" ></canvas>
+<div id="webcam">
+  <video id="video"></video>
+  <canvas id="canvas"></canvas>
+  <canvas id="photo"></canvas>
+</div>
+<div>
+  <button id="startbutton" disabled> Prendre une photo<?php echo json_decode('"\uD83D\uDCF8"'); ?></button>
+</div>
+<div class="upload">
+ Or Upload your pic:  <input type="file" id="fileUpload" onchange="handleFiles(this.files)" >
+</div>
+
+<div>
+  <div class="play">
+    <button type="button" onclick="bigger();">+</button>
+    <button type="button" onclick="smaller();">-</button>
+  </div>
+</div>
+
+<div id="filters">
+  <?php 
+  $dir = new DirectoryIterator(dirname(__FILE__).'/filters');
+  foreach ($dir as $fileinfo) {
+    if (!$fileinfo->isDot()) {
+      $src = 'filters/'.$fileinfo->getFilename();
+      echo  "<img src=\"$src\" class=\"filter\">";
+    }
+  }
+   ?>
+</div>
+
+<!-- form -->
+<div id="mypics">
+  <!-- TODO database -->
+</div>
+
+<div id="mypics">
+<?php 
+ if ($_GET['msg'])
+    echo $_GET['msg'];
+   ?>
+  <form action="upload.php" method="post" enctype="multipart/form-data">
+    Ajouter un filtre:
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="Upload Image" name="Submit">
+  </form>  
+</div>
+
 
 <script src="capture.js">  </script>
-<!-- <br>
-<div class="contentarea">
-  <div class="camera">
-    <video id="video">Video stream not available.</video>
-    <button id="startbutton">Take photo</button>
-  </div>
-  <canvas id="canvas">
-  </canvas>
-  <div class="output">
-    <img id="photo" alt="The screen capture will appear in this box.">
-  </div>
-  <p>
-    Visit our article <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Taking_still_photos"> Taking still photos with WebRTC</a> to learn more about the technologies used here.
-  </p>
-</div>
- --><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
 <?php include ("partials/footer.php"); ?>

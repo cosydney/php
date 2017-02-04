@@ -53,6 +53,10 @@ background-color: gray;
     padding: 10px;
 }
 
+#mypics {
+  text-align: center;
+}
+/*
     #video {
   border: 1px solid black;
   box-shadow: 2px 2px 3px black;
@@ -80,23 +84,166 @@ background-color: gray;
   width: 340px;
   display:inline-block;
 }
-
-#startbutton {
-  display:block;
-  position:relative;
-  margin-left:auto;
-  margin-right:auto;
-  bottom:32px;
-  background-color: rgba(0, 150, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0px 0px 1px 2px rgba(0, 0, 0, 0.2);
-  font-size: 14px;
-  font-family: "Lucida Grande", "Arial", sans-serif;
-  color: rgba(255, 255, 255, 1.0);
-}
-
 .contentarea {
   font-size: 16px;
   font-family: "Lucida Grande", "Arial", sans-serif;
   width: 760px;
+}
+
+.camera {
+    width: 340px;
+    display: inline-block;
+}
+
+.output {
+    width: 340px;
+    display: inline-block;
+}
+
+*/
+
+.contentarea {
+    font-size: 16px;
+    font-family: "Lucida Grande", "Arial", sans-serif;
+    width: 760px;
+}
+
+.image {
+  background-color: darkgrey;
+padding: 2%;
+border-radius: 4%;
+margin: 1%;
+}
+
+input[type=submit] {
+    /* padding: 5px 15px; */
+    background: white;
+    border: 0 none;
+    cursor: pointer;
+    /* -webkit-border-radius: 5px; */
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.filter {
+    width: 200px;
+}
+
+.filter:hover {
+    cursor: pointer;
+}
+
+#photo:active {
+  cursor: -webkit-grabbing;
+}
+
+
+
+#webcam>* {
+    position: absolute;
+    /*top: 0;*/
+    /*left: 22%;*/
+}
+
+#webcam {
+    margin: auto;
+    /*position: relative;*/
+}
+
+#mypics {
+padding: 3%;
+}
+
+.line {
+    display: flex;
+    /*flex-direction: column;*/
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3%;
+}
+
+#startbutton {
+      top: 20px;
+    margin-bottom: 36px;
+    font-size: 32px;
+      display: block;
+      position: relative;
+      margin-left: auto;
+      margin-right: auto;
+    cursor: pointer;
+    background-color: white;
+        border: none;
+  /*margin-bottom: 4%;*/
+}
+
+#startbutton:disabled {
+    cursor: default;
+}
+
+
+.mini {
+  width: 50%;
+}
+
+.comments {
+
+  background-color: white;
+  padding: 2%;
+  border-radius: 10px;
+  margin: 2% 0 2% 0;
+}
+
+
+.myform {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 28px;
+}
+
+.play {
+  display: flex;
+  justify-content: center;
+  /*margin-top: 2%;*/
+}
+
+.play > button
+{
+  font-size: 40px;
+  border-radius: 12px;
+  background-color: white;
+  border: 4px solid darkgrey;
+  width: 5%;
+  margin: 1%;
+  color: darkgrey;
+}
+
+.play > button:hover {
+  background-color: darkgrey;
+  color: white;
+cursor: pointer;
+}
+
+.play > button:focus {outline:none!important;}
+
+#startbutton:focus {outline:none!important;}
+/*.play > button*/
+.upload {
+  display: flex;
+  justify-content: center;
+  font-size: 21px;
+  margin-top: 1%;
+}
+
+#filters {
+  width: 56%;
+  border-radius: 12px;
+  border: 4px solid darkgrey;
+  margin: auto;
+padding: 25px;
 }

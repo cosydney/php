@@ -17,10 +17,9 @@ ob_start();
 	<ul>
 		<li> <a href="index.php"> <strong> Coco Selfie </strong> </a></li>
 		<?php
+		print("<script src=\"//code.jquery.com/jquery-1.11.0.min.js\"></script>");
 		if ($_SESSION['logged'] == 'admin' || $_SESSION['logged'] == 'poney')
 			echo "<li> <a href='Admin.php'> Admin </a></li>";
-    // TODO
-    // echo print_r($_SESSION);
 
 		if (isset($_SESSION["logged"]) && $_SESSION["logged"] != "") {
 			echo "<li style='float:right'> <a href='logout.php'> Logout </a></li>";
