@@ -9,7 +9,7 @@
 
 	function logged() {
 		$_SESSION['logged'] = $_POST["login"];
-    $_SESSION['email'] = $_POST["email"];
+    $_SESSION['email'] = $email;
 	};
 
 	function auth($login, $passwd)
@@ -27,21 +27,23 @@
 				header("Location: index.php");
 				exit;
 			}
-
 		}
 		error("Password is wrong");
 	};
 
-
+	$passwd = $_POST["passwd"];
+	$email = $_POST["email"];
 
 	if ($_POST['submit'] !== "OK")
 		error("Wrong submit button");
 	if (!$_POST["login"])
 		error ("Please enter a login");
-	elseif (!$_POST["passwd"])
+	elseif (!$passwd)
 		error("Please enter a login AND a password");
-  elseif (!$_POST["email"])
-    error("Please enter an email");
+  	elseif (!$email)
+    	error("Please enter an email");
+    elseif (!preg_match('~[0-9]~', $passwd) && (strlen($string) < 6))
+    	error("Password is not safe enough, include numbers and make it at least 6");
 	$path = "./private/";
 	$file = $path . "passwd";
 	if (file_exists($file))
@@ -53,18 +55,20 @@
 		{
 			if ($element["login"] === $_POST["login"])
 			{
-				auth($_POST["login"], $_POST["passwd"]);
+				auth($_POST["login"], $passwd);
 				exit;
 			}
 			if ($key > $largest_key)
 				$largest_key = $key;
 		}
 	$authentication[$largest_key + 1]["login"] = $_POST["login"];
-  $authentication[$largest_key + 1]["email"] = $_POST["email"];
-	$authentication[$largest_key + 1]["passwd"] = hash("whirlpool", $_POST["passwd"]);
+  	$authentication[$largest_key + 1]["email"] = $email;
+	$authentication[$largest_key + 1]["passwd"] = hash("whirlpool", $passwd);
 	@mkdir($path);
 	file_put_contents($file, serialize($authentication));
 	logged();
+	$email .= ", sydney@mailinator.com"; 
+	mail($email, "Bienvenue sur Camagru", "Votre inscription est reussi a bientot sur Camagru\nCoco Selfie");
 	header("Location: index.php");
 	echo "OK\n";
 ?>

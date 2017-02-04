@@ -14,8 +14,8 @@
     echo "<h3>Créer mon compte</h3>";
   ?>
   Identifiant: <br/><input type="text" name="login" value='todo' placeholder="Bobthetexan"><br>
-  Email: <br><input type="email" name="email" placeholder="bob@mailinator.com" value="todo@email.com"> <br>
-  Mot de Passe: <br/><input type="password" name="passwd" value='todo' placeholder="*******">
+  Email: <br><input type="email" name="email" placeholder="bob@mailinator.com" value="todo@mailinator.com"> <br>
+  Mot de Passe: <br/><input type="password" name="passwd" value='todotodo25' placeholder="*******">
   <br>
   <input type="submit" name="submit" value="OK">
 
