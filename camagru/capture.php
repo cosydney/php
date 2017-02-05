@@ -45,33 +45,33 @@ $filter = base64_decode(str_replace('data:image/png;base64,', '', $_POST['filter
   $name = time().'.png';
   $path = 'photos/'.$name;
   imagepng($destination, $path);
-  // try {
-  //     $query = 'SELECT * FROM users WHERE username=:username;';
-  //     $prep = $pdo->prepare($query);
-  //     $prep->bindValue(':username', $_SESSION['loggued_on_user'], PDO::PARAM_STR);
-  //     $prep->execute();
+  try {
+      $query = 'SELECT * FROM users WHERE username=:username;';
+      $prep = $pdo->prepare($query);
+      $prep->bindValue(':username', $_SESSION['logged'], PDO::PARAM_STR);
+      $prep->execute();
 
-  //     $arr = $prep->fetchAll();
-  //     $id_user = $arr[0][id];
+      $arr = $prep->fetchAll();
+      $id_user = $arr[0][id];
 
-  //     $prep->closeCursor();
-  //     $prep = null;
+      $prep->closeCursor();
+      $prep = null;
 
-  //     $query = 'INSERT INTO images(id_user, name, path) VALUES (:id_user, :name, :path);';
-  //     $prep = $pdo->prepare($query);
+      $query = 'INSERT INTO images(id_user, name, path) VALUES (:id_user, :name, :path);';
+      $prep = $pdo->prepare($query);
 
-  //     $prep->bindValue(':id_user', $id_user, PDO::PARAM_INT);
-  //     $prep->bindValue(':name', $name, PDO::PARAM_STR);
-  //     $prep->bindValue(':path', $path, PDO::PARAM_STR);
-  //     $prep->execute();
+      $prep->bindValue(':id_user', $id_user, PDO::PARAM_INT);
+      $prep->bindValue(':name', $name, PDO::PARAM_STR);
+      $prep->bindValue(':path', $path, PDO::PARAM_STR);
+      $prep->execute();
 
-  //     $prep->closeCursor();
-  //     $prep = null;
-  // } catch (PDOException $e) {
-  //     // header("Location: new_user.php");
-  //     $msg = 'ERREUR PDO dans ' . $e->getFile() . ' L.' . $e->getLine() . ' : ' . $e->getMessage();
-  //     die($msg);
-  // }
+      $prep->closeCursor();
+      $prep = null;
+  } catch (PDOException $e) {
+      // header("Location: new_user.php");
+      $msg = 'ERREUR PDO dans ' . $e->getFile() . ' L.' . $e->getLine() . ' : ' . $e->getMessage();
+      die($msg);
+  }
   echo $path;
   imagedestroy($source);
   imagedestroy($destination);

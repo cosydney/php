@@ -58,7 +58,7 @@ try {
     FOREIGN KEY (id_user) REFERENCES Users(id)
     );
     ");
-    echo "Database 'db_sycohen' created successfully.<br>";
+    // echo "Database 'db_sycohen' created successfully.<br>";
 } catch (PDOException $e) {
     $msg = 'ERREUR PDO dans ' . $e->getFile() . ' L.' . $e->getLine() . ' : ' . $e->getMessage();
     die($msg);
