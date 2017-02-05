@@ -46,6 +46,6 @@ try {
     $msg = 'ERREUR PDO dans ' . $e->getFile() . ' L.' . $e->getLine() . ' : ' . $e->getMessage();
     die($msg);
 }
-    header("Location: index.php");
+    header("Location: index.php?msg=👍");
     return;
 ?>
