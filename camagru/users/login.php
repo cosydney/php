@@ -3,7 +3,7 @@
 	// error will give an error message if something unexpected comes up
 	function error($error)
 	{
-		header("Location: created.php?error=" . $error);
+		header("Location: login_form.php?error=" . $error);
 		exit;
 	};
 

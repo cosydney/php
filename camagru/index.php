@@ -38,13 +38,8 @@ include ("partials/navbar.php");
   }
    ?>
 </div>
-
-<!-- form -->
-<div id="mypics">
-  <!-- TODO database -->
-</div>
-
-<div id="mypics">
+<!-- Upload new filter -->
+<div id="uploadfilter">
 <?php 
  if ($_GET['msg'])
     echo $_GET['msg'];
@@ -55,7 +50,49 @@ include ("partials/navbar.php");
     <input type="submit" value="Upload Image" name="Submit">
   </form>  
 </div>
-
-
 <script src="capture.js">  </script>
+
+<!-- form -->
+<div id="mypics">
+  <?php 
+try{
+  $query = 'SELECT * FROM users WHERE username=:username;';
+  $prep = $pdo->prepare($query);
+  $prep->bindValue(':username', $_SESSION['logged'], PDO::PARAM_STR);
+  $prep->execute();
+  $arr = $prep->fetchAll();
+  $id_user = $arr[0][id];
+  $prep->closeCursor();
+  $prep = null;
+  $query = 'SELECT * FROM images WHERE id_user=:id_user;';
+  $prep = $pdo->prepare($query);
+  $prep = bindValue(':id_user', $id_user, PDO::PARAM_INT);
+  $prep->execute();
+  $arr = $prep->fetchAll();
+  // print_r($arr);
+  $count = 0;
+  foreach ($arr as $image){
+    if ($count == 0) {
+        echo "<div class=\"line\">";
+      }
+          echo "<div><div><img class=\"mini\" src=\"$image[path]\"></img></div>";
+          print("<div><form action=\"delete_image.php\" method=\"post\">
+                <input type=\"hidden\" name=\"id_image\" value=$image[id] >
+                <input type=\"submit\" value=\"delete\" >
+                </form></div></div>
+                ");
+          $count += 1;
+          if ($count == 2) {
+              $count = 0;
+              echo "</div>";
+          }
+      }
+  } catch (PDOException $e) {
+      $msg = 'ERREUR PDO dans ' . $e->getFile() . ' L.' . $e->getLine() . ' : ' . $e->getMessage();
+      die($msg);
+  }
+   ?>
+  <!-- TODO database -->
+</div>
+
 <?php include ("partials/footer.php"); ?>
