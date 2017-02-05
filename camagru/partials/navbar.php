@@ -27,7 +27,7 @@ ob_start();
 		}
 		else
 		{
-			echo "<li style='float:right' > <a href='users/login_form.php?status=create'> Créer mon compte </a></li>";
+			echo "<li style='float:right' > <a href='users/new_user.php?status=create'> Créer mon compte </a></li>";
 			echo "<li style='float:right' > <a href='users/login_form.php?status=connect'> Connexion </a></li>";
 		};
 		 ?>
