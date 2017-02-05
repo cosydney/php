@@ -9,8 +9,8 @@
   	echo "<p>". $msg . "</p>";
   	 ?>
     <h3>Se Connecter</h3>
-  Identifiant: <br/><input type="text" name="login" value='todo' placeholder="Bobthetexan"><br>
-  Mot de Passe: <br/><input type="password" name="passwd" value='todotodo25' placeholder="*******">
+  Identifiant: <br/><input type="text" name="login" value='' placeholder="Bobthetexan" required="required"><br>
+  Mot de Passe: <br/><input type="password" name="passwd" value='' placeholder="*******" required="required">
   <br>
   <a href='forgot_password.php'> Mot de passe oublier </a>
   <br>

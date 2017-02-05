@@ -7,7 +7,7 @@ $email = $_POST['email'];
 $username = $_POST['login'];
 $submit = $_POST['submit'];
 if (empty($password) || empty($username) || empty($email) || $submit !== 'OK')
-	header("Location: login_form.php?msg=Login is not right, try again or please create an account");
+	header("Location: new_user.php?msg=Complete All required inputs");
 else if(1 !== preg_match('~[0-9]~', $password) && strlen($password) < 6){
     header("Location: new_user.php?msg=Password must contain a number and be 6 char minimumplease try again");
 }

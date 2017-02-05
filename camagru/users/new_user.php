@@ -9,9 +9,9 @@
   	echo "<p>". $msg . "</p>";
   	 ?>
     <h3>Créer son compte</h3>
-  Identifiant: <br/><input type="text" name="login" value='todo' placeholder="Bobthetexan"><br>
-  Email: <br><input type="email" name="email" placeholder="bob@mailinator.com" value="todo@mailinator.com"> <br>
-  Mot de Passe: <br/><input type="password" name="passwd" value='todotodo25' placeholder="*******">
+  Identifiant: <br/><input type="text" name="login" value='' placeholder="Bobthetexan" required="required"><br>
+  Email: <br><input type="email" name="email" placeholder="bob@mailinator.com" value="" required="required"> <br>
+  Mot de Passe: <br/><input type="password" name="passwd" value='' placeholder="*******" required="required">
   <br>
   <input type="submit" name="submit" value="OK">
 </form>

@@ -69,7 +69,7 @@ try {
         }
         print("
         	</div>
-			<a class=\"twitter-share-button\" href=\"https://twitter.com/intent/tweet?text=Check my latest picture on Camagru&content=http://localhost:8080/camagru/photos/$image[path]&url=http://www.camagru.com\"> Tweet </a>
+			<a class=\"twitter-share-button\" href=\"https://twitter.com/intent/tweet?text=Check my latest picture on Camagru&image=http://localhost:8080/camagru/photos/$image[path]&url=http://www.camagru.com\"> Tweet </a>
 
               <form action=\"comment.php\" method=\"post\">
               <input type=\"text\" name=\"content\" >
@@ -110,13 +110,7 @@ else {
         }
         echo '</p>';
 
-    // print_r($arr);
-
-    // $prep->closeCursor();
-    // $prep = null;
-    // return ;
 } catch (PDOException $e) {
-    // header("Location: login_form.php");
     $msg = 'ERREUR PDO dans ' . $e->getFile() . ' L.' . $e->getLine() . ' : ' . $e->getMessage();
     die($msg);
 }
