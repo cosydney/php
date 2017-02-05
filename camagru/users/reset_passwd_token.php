@@ -2,6 +2,10 @@
 session_start();
 include "navbar.php";
 include "../config/setup.php";
+
+if ($_GET['msg'])
+   echo "<div style=\"text-align: center\">".$_GET['msg']."</div>";
+
 if (isset($_SESSION['logged']) && $_SESSION['logged'] !== "") {
     header("Location: ../index.php");
     return;
@@ -12,10 +16,10 @@ try {
     $prep->bindValue(':token', $_GET['token'], PDO::PARAM_INT);
     $prep->execute();
     if ($prep->rowCount() < 1) {
-    header("Location: ../index.php");
-    $prep->closeCursor();
-    $prep = null;
-    return;
+      header("Location: ../index.php?msg=Link is expired try again");
+      $prep->closeCursor();
+      $prep = null;
+      return;
     }
     $prep->closeCursor();
     $prep = null;

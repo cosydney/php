@@ -8,8 +8,8 @@ $username = $_POST['login'];
 $submit = $_POST['submit'];
 if (empty($password) || empty($username) || empty($email) || $submit !== 'OK')
 	header("Location: login_form.php?msg=Login is not right, try again or please create an account");
-else if(1 !== preg_match('~[0-9]~', $password)){
-    header("Location: new_user.php?msg=Password must contain a number please try again");
+else if(1 !== preg_match('~[0-9]~', $password) && strlen($password) < 6){
+    header("Location: new_user.php?msg=Password must contain a number and be 6 char minimumplease try again");
 }
 else
 {
@@ -30,6 +30,12 @@ else
 		die($msg);
 	}
 	$_SESSION['logged'] = $username;
+	// Message de bienvenue
+	$message = "Bonjour Jeune Novice,\r\n\nBienvenue Sur Camagru\r\n\nCdlt\r\n\n Coco Selfie";
+	// Dans le cas où nos lignes comportent plus de 70 caractères, nous les coupons en utilisant wordwrap()
+	$message = wordwrap($message, 70, "\r\n");
+	// Envoi du mail
+	mail($email, 'Camagru Coco Selfie', $message);
 	header("Location: ../index.php");
 	return;
 }

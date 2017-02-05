@@ -3,8 +3,18 @@ session_start();
 include "navbar.php";
 include "../config/setup.php";
 
+if ($_GET['msg'])
+   echo "<div style=\"text-align: center\">".$_GET['msg']."</div>";
+
+$password = $_POST['password'];
 if (isset($_SESSION['logged']) && $_SESSION['logged'] !== "")
-  header("Location: ../index.php");
+  header("Location: ../index.php?msg=Password not updated");
+
+if (1 !== preg_match('~[0-9]~', $password) || strlen($password) < 6) {
+    header("Location: ./reset_passwd_token.php?msg=Enter a secure password please, min 6 chars and one number&token=". $_POST['token']);
+    exit();
+}
+
 try {
 	$query = 'SELECT * FROM tokens WHERE token =:token';
 	$prep = $pdo->prepare($query);
@@ -27,19 +37,14 @@ try {
         $prep->bindValue(':id_user', $id_user, PDO::PARAM_INT);
         $prep->execute();
     }
+    else
+        header("Location: ../index.php?msg=Couldn't find token");
     $prep->closeCursor();
     $prep = null;
-    header("Location: ../index.php");
+    header("Location: ../index.php?msg=Password updated");
     return;
 } catch (PDOException $e) {
     $msg = 'ERREUR PDO dans ' . $e->getFile() . ' L.' . $e->getLine() . ' : ' . $e->getMessage();
     die($msg);
 };
 ?>
-
-<div style="text-align: center;">
-<form class="" action="reset_passwd.php" method="post">
-  <input type="password" name="password" value="">
-  <input type="submit" name="" value="Confirm">
-</form>
-</div>

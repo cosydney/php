@@ -37,7 +37,7 @@ try {
 
     $prep->closeCursor();
     $prep = null;
-    header("Location: ../index.php");
+    header("Location: ../index.php?msg=Check your email :)");
     return;
 //
 } catch (PDOException $e) {

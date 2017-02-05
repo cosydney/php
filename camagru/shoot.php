@@ -52,25 +52,26 @@ if (empty($_SESSION['logged']) || !isset($_SESSION['logged']) || $_SESSION['logg
 <!-- form -->
 <div id="mypics">
   <?php 
-try{
-  $query = 'SELECT * FROM users WHERE username=:username;';
-  $prep = $pdo->prepare($query);
-  $prep->bindValue(':username', $_SESSION['logged'], PDO::PARAM_STR);
-  $prep->execute();
-  $arr = $prep->fetchAll();
-  $id_user = $arr[0][id];
-  $prep->closeCursor();
-  $prep = null;
-  $query = 'SELECT * FROM images WHERE id_user=:id_user;';
-  $prep = $pdo->prepare($query);
-  $prep = bindValue(':id_user', $id_user, PDO::PARAM_INT);
-  $prep->execute();
-  $arr = $prep->fetchAll();
-  // print_r($arr);
-  $count = 0;
-  foreach ($arr as $image){
-    if ($count == 0) {
-        echo "<div class=\"line\">";
+ try {
+      $query = 'SELECT * FROM users WHERE username=:username;';
+      $prep = $pdo->prepare($query);
+      $prep->bindValue(':username', $_SESSION['logged'], PDO::PARAM_STR);
+      $prep->execute();
+      $arr = $prep->fetchAll();
+      $id_user = $arr[0][id];
+      $prep->closeCursor();
+      $prep = null;
+      $query = 'SELECT * FROM images WHERE id_user=:id_user;';
+      $prep = $pdo->prepare($query);
+      $prep->bindValue(':id_user', $id_user, PDO::PARAM_INT);
+      $prep->execute();
+      $arr = $prep->fetchAll();
+      // print_r($arr);
+      $count = 0;
+      foreach ($arr as $image) {
+          // echo "$count";
+      if ($count == 0) {
+          echo "<div class=\"line\">";
       }
           echo "<div><div><img class=\"mini\" src=\"$image[path]\"></img></div>";
           print("<div><form action=\"delete_image.php\" method=\"post\">
@@ -88,7 +89,7 @@ try{
       $msg = 'ERREUR PDO dans ' . $e->getFile() . ' L.' . $e->getLine() . ' : ' . $e->getMessage();
       die($msg);
   }
-   ?>
+?>
   <!-- TODO database -->
 </div>
 
