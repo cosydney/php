@@ -40,10 +40,10 @@ try {
       $prep = null;
       $email = $arr['email'];
       $subject = 'Nouveau commentaire';
-      $message = 'Bonjour, vous avez un nouveau commentaire';
+      $message = 'Bonjour, vous avez un nouveau commentaire sur Camagru';
       $boundary = "-----=".md5(rand());
-      $header = "From: \"WeaponsB\"<weaponsb@mail.fr>\n";
-      $header .= "Reply-to: \"WeaponsB\" <weaponsb@mail.fr>\n";
+      $header = "From: \"Camagru\"<Camagru@mail.fr>\n";
+      $header .= "Reply-to: \"Camagru\" <Camagru@mail.fr>\n";
       $header .= "MIME-Version: 1.0\n";
       $header .= "Content-Type: multipart/alternative;\n"." boundary=\"$boundary\"\n";
       mail($email, $subject, $message);
