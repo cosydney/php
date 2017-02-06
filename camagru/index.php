@@ -1,12 +1,14 @@
 <?php 
 include ("partials/navbar.php");
+include "config/setup.php";
+// Message from other pages
 if ($_GET['msg'])
    echo "<div style=\"text-align: center\">".$_GET['msg']."</div>";
-include "config/setup.php";
+
 $connected = false;
 if (isset($_SESSION['logged']) && $_SESSION['logged'] !== "")
   $connected = true;
-$messagesParPage = 5;
+$imagesParPage = 5;
 try {
   $query = 'SELECT count(*) AS count FROM images;';
   $prep = $pdo->prepare($query);
@@ -14,20 +16,20 @@ try {
   $retour_total = $prep->fetchcolumn();
   $prep->closeCursor();
   $prep = null;
-  $nombreDePages=ceil($retour_total/$messagesParPage);
+  $nombreDePages=ceil($retour_total / $imagesParPage);
  if(isset($_GET['page'])) // Si la variable $_GET['page'] existe...
  {
-     $pageActuelle=intval($_GET['page']);
-      if($pageActuelle>$nombreDePages) // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
-           $pageActuelle=$nombreDePages;
+     $pageActuelle = intval($_GET['page']);
+      if($pageActuelle > $nombreDePages) // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
+           $pageActuelle = $nombreDePages;
  }
  else // Sinon
-      $pageActuelle=1; // La page actuelle est la n°1
- $premiereEntree=($pageActuelle-1)*$messagesParPage; // On calcul la première entrée à lire
-    $query = 'SELECT * FROM images LIMIT :premiereEntree, :messagesParPage;';
+      $pageActuelle = 1; // La page actuelle est la n°1
+    $premiereEntree = ($pageActuelle - 1) * $imagesParPage; // On calcul la première entrée à lire
+    $query = 'SELECT * FROM images LIMIT :premiereEntree, :imagesParPage;';
     $prep = $pdo->prepare($query);
     $prep->bindValue(':premiereEntree', $premiereEntree, PDO::PARAM_INT);
-    $prep->bindValue(':messagesParPage', $messagesParPage, PDO::PARAM_INT);
+    $prep->bindValue(':imagesParPage', $imagesParPage, PDO::PARAM_INT);
     $prep->execute();
     $arr = $prep->fetchAll();
     $prep->closeCursor();
@@ -69,8 +71,7 @@ try {
         }
         print("
         	</div>
-			<a class=\"twitter-share-button\" href=\"https://twitter.com/intent/tweet?text=Check my latest picture on Camagru&image=http://localhost:8080/camagru/photos/$image[path]&url=http://www.camagru.com\"> Tweet </a>
-
+			     <a class=\"twitter-share-button\" href=\"https://twitter.com/intent/tweet?text=Check my latest picture on Camagru&image=http://localhost:8080/camagru/photos/$image[path]&url=http://www.camagru.com\"> Tweet this </a>
               <form action=\"comment.php\" method=\"post\">
               <input type=\"text\" name=\"content\" >
               <input type=\"hidden\" name=\"id_image\" value=$image[id] >
@@ -85,21 +86,21 @@ try {
               <input type=\"submit\" value=\"comment\">
               </form></div>
               ");
-    }
-else {
-        print("<div>$arr[likes] Likes");
-        foreach ($comments as $comment) {
-            echo "<div>$comment[username]: $comment[content]</div>";
         }
-      }
-        // echo "</div>";
-}
+        else {
+                print("<div>$arr[likes] Likes");
+                foreach ($comments as $comment) {
+                    echo "<div>$comment[username]: $comment[content]</div>";
+                }
+              }
+                // echo "</div>";
+        }
         echo "</div>";
         echo '<p align="center">Page : '; //Pour l'affichage, on centre la liste des pages
-        for($i=1; $i<=$nombreDePages; $i++) //On fait notre boucle
+        for($i = 1; $i <= $nombreDePages; $i++) //On fait notre boucle
         {
              //On va faire notre condition
-             if($i==$pageActuelle) //Si il s'agit de la page actuelle...
+             if($i == $pageActuelle) //Si il s'agit de la page actuelle...
              {
                  echo ' [ '.$i.' ] ';
              }
